@@ -7,7 +7,7 @@ import time
 app = Flask(__name__)
 
 # 设置OpenAI API密钥
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = ""
 
 # 初始化文档生成器
 doc_generator = DocumentationGenerator(OPENAI_API_KEY)

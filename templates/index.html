@@ -1,0 +1,101 @@
+<!-- 页面结构布局 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Code Document Generator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Smart Code Document Generator</h1>
+            <p>上传您的代码文件，AI将自动生成全面的技术文档</p>
+        </div>
+
+        <div class="main-card">
+            <div class="upload-section" id="uploadSection">
+                <div class="upload-icon">📁</div>
+                <h3>拖拽文件到此处或点击选择文件</h3>
+                <p class="desc">支持多种编程语言的代码文件</p>
+                <input type="file" id="fileInput" class="file-input">
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+            </div>
+
+            <div class="file-info" id="fileInfo">
+                <div class="file-name" id="fileName"></div>
+                <div class="file-size" id="fileSize"></div>
+            </div>
+
+            <div class="dropdown-group">
+                <div class="dropdown-btn">
+                    <label for="lang">📘 文档语言</label>
+                    <select id="lang" name="lang">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                    </select>
+                </div>
+                <div class="dropdown-btn">
+                    <label for="style">🎨 文档风格</label>
+                    <select id="style" name="style">
+                    <option value="tutorial">🧑‍🏫 教程风格（适合初学者）</option>
+                    <option value="manual">🧪 技术手册（标准工程）</option>
+                    <option value="api">📜 API 文档（接口导向）</option>
+                    <option value="comment">🗣️ 注释风格（简洁说明）</option>
+                    <option value="insight">🕵️ 深度分析（架构/优化）</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="generate-btn" id="generateBtn" onclick="generateDocumentation()" disabled>
+                🔄 生成文档
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="progressText">AI正在分析您的代码并生成文档，请稍候...</p>
+            </div>
+
+
+            <div class="supported-formats">
+                <p><strong>支持的文件格式：</strong></p>
+                <div class="format-list">
+                    <span class="format-item">Python (.py)</span>
+                    <span class="format-item">JavaScript (.js)</span>
+                    <span class="format-item">TypeScript (.ts)</span>
+                    <span class="format-item">Java (.java)</span>
+                    <span class="format-item">C++ (.cpp)</span>
+                    <span class="format-item">C# (.cs)</span>
+                    <span class="format-item">PHP (.php)</span>
+                    <span class="format-item">Go (.go)</span>
+                    <span class="format-item">Rust (.rs)</span>
+                    <span class="format-item">更多...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <div class="result-card">
+                <div class="result-header">
+                    <h2 class="result-title">📚 生成的文档</h2>
+                    <div>
+                        <button class="copy-btn" onclick="copyDocumentation()">复制文档</button>
+                        <a id="downloadMdBtn" class="copy-btn" href="#" download>下载 Markdown</a>
+                        <button class="copy-btn" onclick="renderAndExportPDF()">预览并下载 PDF</button>
+                    </div>
+                </div>
+                <textarea id="documentationEditor" class="documentation" rows="30"></textarea>
+                <div id="renderedPreview" class="documentation" style="margin-top: 20px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
